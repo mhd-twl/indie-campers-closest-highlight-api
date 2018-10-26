@@ -1,7 +1,7 @@
 
-<p align="center">
+ 
 ## phase 2 IndieCampers closest highlight apis
-</p>
+ 
 Is a Laravel web app contains GET 2 APIs as JSON Response.
 
 How to use it:
