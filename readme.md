@@ -4,12 +4,6 @@
  
 Is a Laravel web app contains GET 2 APIs as JSON Response.
 
-How to use it:
-1. {APP_API_URL}/show_highlights/{point1}/{point2}
-	- ex. http://indie-campers-phase2.herokuapp.com/api/show_highlights/B/A
-2. {APP_API_URL}/shortest_route/{point1}/{lat1}/{long2}
-	- ex. http://indie-campers-phase2.herokuapp.com/api/shortest_route/A/44.920/-93.447
-
 I defined them as Label in a GIVEN GRAPH in the constructor function.
 The routes between points is calculated using their lat & long which is given and hardcoded as well ( in App\Http\Controllers\RoutePathController ). 
 
@@ -40,6 +34,16 @@ The data added as dummy
 	'I'  =>  ('H'  ,'C'   , 'B'  )
 	'J'  =>  ('F'  ,'I'  )
 
+
+How to use it:
+1. {APP_API_URL}/show_highlights/{point1}/{point2}
+	- ex. http://indie-campers-phase2.herokuapp.com/api/show_highlights/B/A
+2. {APP_API_URL}/shortest_route/{point1}/{lat1}/{long2}
+	- ex. http://indie-campers-phase2.herokuapp.com/api/shortest_route/A/44.920/-93.447
+	
+3. {APP_API_URL}/show_geo_diff/{lat1}/{long1}/{lat2}/{long2}
+	-ex. http://indie-campers-phase2.herokuapp.com/api/show_geo_diff/44.920/-93.447/33.844/-117.549
+
 	
 
 ### 1st API 
@@ -52,7 +56,10 @@ between the given 2 points.
 - The destination point here allowed to be used by lat and long.
 - The shortest path is found by Dijkstra Algorithem.
 
-* Note that APIs do not show the cost, it's easy to change it as required in the api functions  * 
+### 3rd API 
+Show the Points and Geo Distance in KM even if they not in Graph.
+
+*Note that APIs do not show the cost, it's easy to change it as required in the api functions  * 
 
 
 ___ 
