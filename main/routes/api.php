@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 Route::get('/show_highlights/{point1}/{point2}',
 			'RoutePathController@show_highlights')->name('show_highlights');
 
-Route::get('/show_diff_cost/{point1}/{point2}',
+Route::get('/show_diff_cost/{lat1}/{long1}/{lat2}/{long2}',
 			'RoutePathController@show_diff_cost')->name('show_diff_cost');
 
 Route::get('/shortest_route/{point1}/{lat2}/{long2}',
