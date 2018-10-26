@@ -188,7 +188,7 @@ class RoutePathController extends Controller
                         "Distance in KM" => $routepath->distance ];
         
                     return $this->apiResponse(  $result, null ,200);
-                }else{
+                }else{ 
                     $result= [
                         "point1" => [ "Lat: "=>  $lat1 ,
                                      "Long: "=> $long1 ],
