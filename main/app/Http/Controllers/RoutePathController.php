@@ -178,8 +178,9 @@ class RoutePathController extends Controller
             $routepath = new RoutePath($p1, $p2);
             $point1 = $this->find_point_label($lat1 , $long1);
             $point2 = $this->find_point_label($lat2 , $long2);
+            if($point1 != null &&  $point2 != null)
+                {
                 if($point1== $point2) return $this->apiResponse([],"Start is the end point!" ,200);  
-                if(isset($this->graph[$point1]) && isset($this->graph[$point2]) ) {
                     $result= [
                         $point1 => [ "Lat: "=>  $p1->lat ,
                                      "Long: "=> $p1->long ],
