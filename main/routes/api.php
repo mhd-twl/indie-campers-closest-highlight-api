@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-
+Route::get('/test', 'RoutePathController@test')->name('test');
 
 Route::get('/show_highlights/{point1}/{point2}',
 			'RoutePathController@show_highlights')->name('show_highlights');

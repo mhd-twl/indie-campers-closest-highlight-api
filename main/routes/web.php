@@ -11,4 +11,4 @@
 |
 */
 Route::get('/', function () {   return view('index'); });
- 
+Route::get('/test', 'RoutePathController@test')->name('test');

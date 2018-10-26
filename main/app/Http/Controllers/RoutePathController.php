@@ -13,6 +13,10 @@ class RoutePathController extends Controller
 {
     protected $graph , $map_points = [] ; 
 
+    public function test()
+    {
+        dd("HI ADN TESt");
+    }
     /* =================== Initiolization Methods =================== */
     public function __construct(){ 
         /* The Graph routes definition with sample path cost */
