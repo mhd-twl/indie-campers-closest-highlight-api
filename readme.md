@@ -1,5 +1,7 @@
-# indie-campers-closest-highlight-api
 
+<p align="center">
+## phase 2 IndieCampers closest highlight apis
+</p>
 Is a Laravel web app contains GET 2 APIs as JSON Response.
 
 1. {APP_API_URL}/show_highlights/{point1}/{point2}
@@ -24,17 +26,18 @@ The data added as dummy
 #### The Points' Routes 
 	Ex. RoutePath( A , B , 9 ): 
 	The edge in the map start with "A" and costs 9 to reach "B".
+	'A'  =>  ('B'  , 'D'  , 'F'  )
+	'B'  =>  ('A'  , 'C'  , 'D'   ,  'F'    )
+	'C'  =>  ('B'  , 'E'  , 'F'  )
+	'D'  =>  ('A'  , 'B'  , 'E'  )
+	'E'  =>  ('C'  , 'D' )
+	'F'  =>  ('A'  , 'B'  , 'C'  )
+	'G'  =>  ()   
+	'H'  =>  ('E'  ,'C'  )
+	'I'  =>  ('H'  ,'C'   , 'B'  )
+	'J'  =>  ('F'  ,'I'  )
 
-	'A' => array('B' => 9, 'D' => 14, 'F' => 7),
-	'B' => array('A' => 9, 'C' => 11, 'D' => 2, 'F' => 10),
-	'C' => array('B' => 11, 'E' => 6, 'F' => 15),
-	'D' => array('A' => 14, 'B' => 2, 'E' => 9),
-	'E' => array('C' => 6, 'D' => 9),
-	'F' => array('A' => 7, 'B' => 10, 'C' => 15),
-	'G' => array(),
-	'H' => array('E' => 7, 'C' => 2),
-	'I' => array('H' => 7, 'C' => 3 , 'B' => 15),
-	'J' => array('F' => 7, 'I' => 12),
+	
 
 ### 1st API 
 Using this API by calling show_highlights in url will return list of routes between the given 2 points.
