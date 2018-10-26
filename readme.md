@@ -53,13 +53,14 @@ Using this API by calling show_highlights in url will return list of routes betw
 ### 2nd API
 Using this API by calling shortest_route in url will return shortest routes
 between the given 2 points.
-- The destination point here allowed to be used by lat and long.
-- The shortest path is found by Dijkstra Algorithem.
+> - The destination point here allowed to be used by lat and long.
+> - The shortest path is found by Dijkstra Algorithem.
 
 ### 3rd API 
 Show the Points and Geo Distance in KM even if they not in Graph.
+It also detect whether points in Given Graph to named by its label.
 
-*Note that APIs do not show the cost, it's easy to change it as required in the api functions  * 
+> - Note that APIs do not show the cost, it's easy to change it as required in the api functions  * 
 
 
 ___ 
