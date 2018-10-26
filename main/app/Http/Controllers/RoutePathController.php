@@ -172,7 +172,7 @@ class RoutePathController extends Controller
     }
     public function show_geo_diff($lat1 , $long1, $lat2 , $long2)
     {
-        $routepath = new RoutePath(new Point($lat1 , $long1), new Point($lat2 , $long2);
+        $routepath = new RoutePath(new Point($lat1 , $long1), new Point($lat2 , $long2));
         $point1 = $this->find_point_label($lat1 , $long1);
         $point2 = $this->find_point_label($lat2 , $long2);
         if(isset($point1) && isset($point1))
