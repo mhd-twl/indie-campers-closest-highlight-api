@@ -188,16 +188,16 @@ class RoutePathController extends Controller
         
                     return $this->apiResponse(  $result, null ,200);
                 }else{
-                    return $this->apiResponse([],"Points not found.." ,404);    
-                }
-        }else{
-            $result= [
+                    $result= [
                         "point1" => [ "Lat: "=>  $lat1 ,
                                      "Long: "=> $long1 ],
                         "point2" => [ "Lat: "=>  $lat2 ,
                                      "Long: "=> $long2 ],
                         "Distance in KM" => $routepath->distance ];
             return $this->apiResponse(  $result, null ,200);
+                }
+        }else{
+            return $this->apiResponse([],"Points not found or wrong passing params.." ,404); 
         }
     }
     ///------------ api helpers
