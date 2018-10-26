@@ -180,10 +180,10 @@ class RoutePathController extends Controller
                 if($point1== $point2) return $this->apiResponse([],"Start is the end point!" ,200);  
                 if(isset($this->graph[$point1]) && isset($this->graph[$point2]) ) {
                     $result= [
-                        $point1 => [ "Lat: "  $this->graph[$point1]->lat ,
-                                     "Long: " $this->graph[$point1]->long ],
-                        $point2 => [ "Lat: "  $this->graph[$point2]->lat ,
-                                     "Long: " $this->graph[$point2]->long ],
+                        $point1 => [ "Lat: "=>  $this->graph[$point1]->lat ,
+                                     "Long: "=> $this->graph[$point1]->long ],
+                        $point2 => [ "Lat: "=>  $this->graph[$point2]->lat ,
+                                     "Long: "=> $this->graph[$point2]->long ],
                         "Distance in KM" => $routepath->calc_distance(
                                                 $lat1 , $long1, $lat2 , $long2) ];
         
@@ -193,10 +193,10 @@ class RoutePathController extends Controller
                 }
         }else{
             $result= [
-                        "point1" => [ "Lat: "  $lat1 ,
-                                     "Long: " $long1 ],
-                        "point2" => [ "Lat: "  $lat2 ,
-                                     "Long: " $long2 ],
+                        "point1" => [ "Lat: "=>  $lat1 ,
+                                     "Long: "=> $long1 ],
+                        "point2" => [ "Lat: "=>  $lat2 ,
+                                     "Long: "=> $long2 ],
                         "Distance in KM" => $routepath->calc_distance(
                                                 $lat1 , $long1, $lat2 , $long2) ];
             return $this->apiResponse(  $result, null ,200);
