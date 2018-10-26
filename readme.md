@@ -4,8 +4,11 @@
 </p>
 Is a Laravel web app contains GET 2 APIs as JSON Response.
 
+How to use it:
 1. {APP_API_URL}/show_highlights/{point1}/{point2}
+	- ex. http://indie-campers-phase2.herokuapp.com/api/show_highlights/B/A
 2. {APP_API_URL}/shortest_route/{point1}/{lat1}/{long2}
+	- ex. http://indie-campers-phase2.herokuapp.com/api/shortest_route/A/44.920/-93.447
 
 I defined them as Label in a GIVEN GRAPH in the constructor function.
 The routes between points is calculated using their lat & long which is given and hardcoded as well ( in App\Http\Controllers\RoutePathController ). 
