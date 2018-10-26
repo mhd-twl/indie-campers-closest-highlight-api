@@ -174,8 +174,9 @@ class RoutePathController extends Controller
     {
         if(is_numeric($lat1)&& is_numeric($long1)&& is_numeric($lat2)&& is_numeric($long2))
         {
-            $p1 = new Point($lat1 , $long1) ; $p2 = new Point($lat2 , $long2);
+            $p1 = new Point('',$lat1 , $long1) ; $p2 = new Point('',$lat2 , $long2);
             $routepath = new RoutePath($p1, $p2);
+            
             $point1 = $this->find_point_label($lat1 , $long1);
             $point2 = $this->find_point_label($lat2 , $long2);
             if($point1 != null &&  $point2 != null)
