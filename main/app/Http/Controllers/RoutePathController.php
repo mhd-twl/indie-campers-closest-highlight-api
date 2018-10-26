@@ -172,7 +172,7 @@ class RoutePathController extends Controller
     }
     public function show_geo_diff($lat1 , $long1, $lat2 , $long2)
     {
-        $routepath = new RoutePath;
+        $routepath = new RoutePath(new Point($lat1 , $long1), new Point($lat2 , $long2);
         $point1 = $this->find_point_label($lat1 , $long1);
         $point2 = $this->find_point_label($lat2 , $long2);
         if(isset($point1) && isset($point1))
@@ -184,8 +184,7 @@ class RoutePathController extends Controller
                                      "Long: "=> $this->graph[$point1]->long ],
                         $point2 => [ "Lat: "=>  $this->graph[$point2]->lat ,
                                      "Long: "=> $this->graph[$point2]->long ],
-                        "Distance in KM" => $routepath->calc_distance(
-                                                $lat1 , $long1, $lat2 , $long2) ];
+                        "Distance in KM" => $routepath->distance ];
         
                     return $this->apiResponse(  $result, null ,200);
                 }else{
@@ -197,8 +196,7 @@ class RoutePathController extends Controller
                                      "Long: "=> $long1 ],
                         "point2" => [ "Lat: "=>  $lat2 ,
                                      "Long: "=> $long2 ],
-                        "Distance in KM" => $routepath->calc_distance(
-                                                $lat1 , $long1, $lat2 , $long2) ];
+                        "Distance in KM" => $routepath->distance ];
             return $this->apiResponse(  $result, null ,200);
         }
     }
