@@ -1,0 +1,69 @@
+  public function getEachFlightListDJKS($type) // time , price
+    {
+        if( $type =='price')
+            $var = 'base_price' ;
+        else if( $type =='time')
+             $var = 'sec_duration' ;
+        else // not price  --> time
+            return [] ;
+        $main = [];
+        $flights = $this->getFlightSeatAvailableAllCity()->get(); 
+        // getFlightSeatAvailableDepartureCityOnly()->get();
+        $cityToIdsAll = []; //."-". $fly->id ;
+        foreach ($flights as $flight) {
+            $list = $this->getFlightValidConditionFromCity($flight->cityfrom_id , $var);  
+            $fl=[]; $cityToIds = []; //$datalist = [];
+            foreach ($list as  $fly) {
+                if( ! in_array( $fly->cityto_id, $cityToIds ))
+                {
+                    $b_name = $fly->cityto_id  ; //."_city"; 
+                    $fl[$b_name] =  $fly->$var;
+                    
+                    array_push($cityToIdsAll, [ 'cityto' => $b_name , 
+                        'cityfrom' => $flight->cityfrom_id ,'diff' => $fly->$var ]);
+                }
+            }
+            $main[$flight->cityfrom_id ] =  $fl  ; // ."_city" ]
+        }
+        $fltrd_main =  array_filter($main);
+        /// Here $main has from array city list. dd($main) ;
+        ///// To fill data for reversed from array 
+        //// it will be needed to active dijkstra garph
+        $toVisted = []; 
+        $toVistedcity = [];
+        $fromVistedcity = [];
+        foreach ($cityToIdsAll as $to) {
+            $flgt = [] ;
+            $flgt[ $to['cityfrom'] ] = $to['diff'];
+            if(  ! in_array( $to['cityto'] , $toVistedcity )){
+                $toVisted[ $to['cityto'] ] = $flgt; 
+                //$main[ $to['cityto'] ] = $flgt; 
+                array_push( $toVistedcity    , $to['cityto'] ) ;
+                array_push( $fromVistedcity    , $to['cityfrom'] ) ;
+                
+            } else{
+                if(  ! in_array( $to['cityfrom'] , $fromVistedcity ) ){
+                    $toVisted[ $to['cityto'] ][ $to['cityfrom'] ] = $to['diff'];
+                    //$main[ $to['cityto'] ][ $to['cityfrom'] ] =  $to['diff'];
+                }
+            }
+        }
+        
+        $all = $toVisted;
+        foreach ($fltrd_main as $key => $value) {
+             $all[$key] = $value;
+        }
+        
+        foreach ($all as $key => $value) {
+            $subKeys = array_keys($value);
+            foreach ($subKeys as  $subKy) {
+                if( ! isset($all[ $subKy] [ $key] ) ) {
+                    $all[ $subKy] [ $key]  = $all [ $key] [ $subKy];
+                }
+
+            }
+        }
+        //dd($all);
+        return $all;
+    }
+       
