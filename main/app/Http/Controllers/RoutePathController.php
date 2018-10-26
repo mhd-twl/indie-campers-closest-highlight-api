@@ -156,9 +156,9 @@ class RoutePathController extends Controller
             return $this->apiResponse([],"Points not found.." ,404);    
         }
     }
-    public function shortest_route($point1 , $lat1 , $long2)
+    public function shortest_route($point1 , $lat2 , $long2)
     {
-        $point2 = $this->find_point_label($lat1 , $long2);
+        $point2 = $this->find_point_label($lat2 , $long2);
         if(isset($this->graph[$point2])){
             if(isset($this->graph[$point1]) ) {
                 $result= $this->dijkstra_shortest_path($point1 , $point2);
@@ -168,6 +168,38 @@ class RoutePathController extends Controller
             }
         }else{
             return $this->apiResponse([],"lat or long is not defind in graph" ,404);   
+        }
+    }
+    public function show_geo_diff($lat1 , $long1, $lat2 , $long2)
+    {
+        $routepath = new RoutePath;
+        $point1 = $this->find_point_label($lat1 , $long1);
+        $point2 = $this->find_point_label($lat2 , $long2);
+        if(isset($point1) && isset($point1))
+        {
+                if($point1== $point2) return $this->apiResponse([],"Start is the end point!" ,200);  
+                if(isset($this->graph[$point1]) && isset($this->graph[$point2]) ) {
+                    $result= [
+                        $point1 => [ "Lat: "  $this->graph[$point1]->lat ,
+                                     "Long: " $this->graph[$point1]->long ],
+                        $point2 => [ "Lat: "  $this->graph[$point2]->lat ,
+                                     "Long: " $this->graph[$point2]->long ],
+                        "Distance in KM" => $routepath->calc_distance(
+                                                $lat1 , $long1, $lat2 , $long2) ];
+        
+                    return $this->apiResponse(  $result, null ,200);
+                }else{
+                    return $this->apiResponse([],"Points not found.." ,404);    
+                }
+        }else{
+            $result= [
+                        "point1" => [ "Lat: "  $lat1 ,
+                                     "Long: " $long1 ],
+                        "point2" => [ "Lat: "  $lat2 ,
+                                     "Long: " $long2 ],
+                        "Distance in KM" => $routepath->calc_distance(
+                                                $lat1 , $long1, $lat2 , $long2) ];
+            return $this->apiResponse(  $result, null ,200);
         }
     }
     ///------------ api helpers
